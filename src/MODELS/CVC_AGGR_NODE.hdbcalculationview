@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PROJ1::CVC_AGGR_NODE" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVC_AGGR_NODE"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PROJ1::ORDERS">
+    <resourceUri>PROJ1::ORDERS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="Aggregation_1">
+    <viewAttributes>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="REQ_DATE"/>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="MATID"/>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="ORDER_QTY" aggregationType="sum"/>
+      <viewAttribute id="UNIT"/>
+      <viewAttribute id="PRICE" aggregationType="sum"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="YR"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="AMOUNT" datatype="DECIMAL" length="17" scale="2" expressionLanguage="SQL">
+        <formula>&quot;ORDER_QTY&quot;*&quot;PRICE&quot;</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="PROJ1::ORDERS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Aggregation_1">
+  <attributes>
+    <attribute id="ORDID" keepFlag="true" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ORDID"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="REQ_DATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REQ_DATE"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="REQ_DATE"/>
+    </attribute>
+    <attribute id="CUSTID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CUSTID"/>
+    </attribute>
+    <attribute id="MATID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="MATID"/>
+    </attribute>
+    <attribute id="EMPID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMPID"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="EMPID"/>
+    </attribute>
+    <attribute id="UNIT" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNIT"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="UNIT"/>
+    </attribute>
+    <attribute id="CURRENCY" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="YR" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YR"/>
+      <keyMapping columnObjectName="Aggregation_1" columnName="YR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ORDER_QTY" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDER_QTY"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="ORDER_QTY"/>
+    </measure>
+    <measure id="PRICE" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="PRICE"/>
+    </measure>
+    <measure id="AMOUNT" order="12" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="AMOUNT"/>
+      <measureMapping columnObjectName="Aggregation_1" columnName="AMOUNT"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="false" modelObjectName="Aggregation_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="210"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

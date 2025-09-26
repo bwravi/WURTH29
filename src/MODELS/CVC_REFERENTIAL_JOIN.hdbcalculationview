@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PROJ1::CVC_REFERENTIAL_JOIN" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVC_REFERENTIAL_JOIN"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PROJ1::ORDERS">
+    <resourceUri>PROJ1::ORDERS</resourceUri>
+  </DataSource>
+  <DataSource id="PROJ1::MAT_MAST">
+    <resourceUri>PROJ1::MAT_MAST</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="MATID"/>
+      <viewAttribute id="ORDER_QTY" aggregationType="sum"/>
+      <viewAttribute id="MAT_GROUP"/>
+      <viewAttribute id="MAT_TYPE"/>
+      <viewAttribute hidden="true" id="JOIN$MATID$MATID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PROJ1::ORDERS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDID" source="ORDID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTID" source="CUSTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATID" source="MATID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_QTY" source="ORDER_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATID$MATID" source="MATID"/>
+    </input>
+    <input node="PROJ1::MAT_MAST">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAT_GROUP" source="MAT_GROUP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAT_TYPE" source="MAT_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$MATID$MATID" source="MATID"/>
+    </input>
+    <joinAttribute name="JOIN$MATID$MATID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="ORDID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDID"/>
+      <keyMapping columnObjectName="Join_1" columnName="ORDID"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="CUSTID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTID"/>
+    </attribute>
+    <attribute id="MATID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATID"/>
+      <keyMapping columnObjectName="Join_1" columnName="MATID"/>
+    </attribute>
+    <attribute id="MAT_GROUP" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAT_GROUP"/>
+      <keyMapping columnObjectName="Join_1" columnName="MAT_GROUP"/>
+    </attribute>
+    <attribute id="MAT_TYPE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAT_TYPE"/>
+      <keyMapping columnObjectName="Join_1" columnName="MAT_TYPE"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ORDER_QTY" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDER_QTY"/>
+      <measureMapping columnObjectName="Join_1" columnName="ORDER_QTY"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="201"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="PROJ1::ORDERS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="162"/>
+    </shape>
+    <shape modelObjectName="PROJ1::MAT_MAST" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="177"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

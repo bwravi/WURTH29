@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PROJ1::CVC_UNION_PRUN" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false" pruningTable="PROJ1::PURN1">
+<descriptions defaultDescription="VC"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PROJ1::ORDERS_HOT">
+    <resourceUri>PROJ1::ORDERS_HOT</resourceUri>
+  </DataSource>
+  <DataSource id="PROJ1::ORDERS">
+    <resourceUri>PROJ1::ORDERS</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+    <viewAttributes>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="REQ_DATE"/>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="MATID"/>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="ORDER_QTY" aggregationType="sum"/>
+      <viewAttribute id="UNIT"/>
+      <viewAttribute id="PRICE" aggregationType="sum"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="YR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="HOT_DATA" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDID" source="ORDID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REQ_DATE" source="REQ_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTID" source="CUSTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATID" source="MATID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMPID" source="EMPID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_QTY" source="ORDER_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNIT" source="UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YR" source="YR"/>
+    </input>
+    <input node="COLD_DATA" emptyUnionBehavior="NO_ROW">
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDID" source="ORDID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REQ_DATE" source="REQ_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTID" source="CUSTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATID" source="MATID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMPID" source="EMPID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_QTY" source="ORDER_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNIT" source="UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="YR" source="YR"/>
+    </input>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="HOT_DATA">
+    <viewAttributes>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="REQ_DATE"/>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="MATID"/>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="ORDER_QTY"/>
+      <viewAttribute id="UNIT"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="YR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PROJ1::ORDERS_HOT"/>
+  </calculationView>
+  <calculationView xsi:type="Calculation:ProjectionView" id="COLD_DATA">
+    <viewAttributes>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="REQ_DATE"/>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="MATID"/>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="ORDER_QTY"/>
+      <viewAttribute id="UNIT"/>
+      <viewAttribute id="PRICE"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="YR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PROJ1::ORDERS"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Union_1">
+  <attributes>
+    <attribute id="ORDID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDID"/>
+      <keyMapping columnObjectName="Union_1" columnName="ORDID"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="Union_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="REQ_DATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REQ_DATE"/>
+      <keyMapping columnObjectName="Union_1" columnName="REQ_DATE"/>
+    </attribute>
+    <attribute id="CUSTID" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTID"/>
+      <keyMapping columnObjectName="Union_1" columnName="CUSTID"/>
+    </attribute>
+    <attribute id="MATID" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATID"/>
+      <keyMapping columnObjectName="Union_1" columnName="MATID"/>
+    </attribute>
+    <attribute id="EMPID" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMPID"/>
+      <keyMapping columnObjectName="Union_1" columnName="EMPID"/>
+    </attribute>
+    <attribute id="UNIT" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNIT"/>
+      <keyMapping columnObjectName="Union_1" columnName="UNIT"/>
+    </attribute>
+    <attribute id="CURRENCY" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="Union_1" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="YR" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YR"/>
+      <keyMapping columnObjectName="Union_1" columnName="YR"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ORDER_QTY" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDER_QTY"/>
+      <measureMapping columnObjectName="Union_1" columnName="ORDER_QTY"/>
+    </measure>
+    <measure id="PRICE" order="9" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE"/>
+      <measureMapping columnObjectName="Union_1" columnName="PRICE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="95" y="205"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape expanded="true" modelObjectName="HOT_DATA" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="281" y="329"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="COLD_DATA" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="25" y="329"/>
+      <rectangleSize height="30" width="160"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

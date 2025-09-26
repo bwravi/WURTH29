@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PROJ1::CVS_DELIVERY" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVS_DELIVERY"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PROJ1::DELIVERY">
+    <resourceUri>PROJ1::DELIVERY</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:AggregationView" id="DEL_FACTS">
+    <viewAttributes>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="DELID"/>
+      <viewAttribute id="DEL_DATE"/>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="MATID"/>
+      <viewAttribute id="DELIVERY_QTY" aggregationType="sum"/>
+      <viewAttribute id="UNIT"/>
+      <viewAttribute id="YR"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <restrictedViewAttributes/>
+    <input node="PROJ1::DELIVERY"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="DEL_FACTS">
+  <attributes>
+    <attribute id="ORDID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDID"/>
+      <keyMapping columnObjectName="DEL_FACTS" columnName="ORDID"/>
+    </attribute>
+    <attribute id="DELID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELID"/>
+      <keyMapping columnObjectName="DEL_FACTS" columnName="DELID"/>
+    </attribute>
+    <attribute id="DEL_DATE" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEL_DATE"/>
+      <keyMapping columnObjectName="DEL_FACTS" columnName="DEL_DATE"/>
+    </attribute>
+    <attribute id="UNIT" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNIT"/>
+      <keyMapping columnObjectName="DEL_FACTS" columnName="UNIT"/>
+    </attribute>
+    <attribute id="YR" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="YR"/>
+      <keyMapping columnObjectName="DEL_FACTS" columnName="YR"/>
+    </attribute>
+    <attribute id="MATID$local">
+      <descriptions defaultDescription="MATID"/>
+      <keyMapping columnObjectName="DEL_FACTS" columnName="MATID"/>
+    </attribute>
+    <attribute id="CUSTID$local">
+      <descriptions defaultDescription="CUSTID"/>
+      <keyMapping columnObjectName="DEL_FACTS" columnName="CUSTID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="DELIVERY_QTY" order="4" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DELIVERY_QTY"/>
+      <measureMapping columnObjectName="DEL_FACTS" columnName="DELIVERY_QTY"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+  <sharedDimensions>
+    <logicalJoin associatedObjectUri="PROJ1::CVD_MATERIAL">
+      <attributes>
+        <attributeRef>MATID$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>MATID</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
+      <associatedAttributeFeatures/>
+    </logicalJoin>
+    <logicalJoin associatedObjectUri="PROJ1::CVD_CUSTOMER">
+      <attributes>
+        <attributeRef>CUSTID$local</attributeRef>
+      </attributes>
+      <associatedAttributeNames>
+        <attributeName>CUSTID</attributeName>
+      </associatedAttributeNames>
+      <properties cardinality="CN_1" joinType="referential" joinOperator="Equal"/>
+      <associatedAttributeFeatures/>
+    </logicalJoin>
+  </sharedDimensions>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="DEL_FACTS" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="100" y="209"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="DEL_FACTS" modelObjectNameSpace="StarJoinViewNodeInput" modelObjectType="repository">
+      <upperLeftCorner x="456" y="112"/>
+      <rectangleSize width="168.9404296875"/>
+    </shape>
+    <shape modelObjectName="PROJ1::CVD_MATERIAL" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="79" y="9"/>
+      <rectangleSize width="204.455078125"/>
+    </shape>
+    <shape modelObjectName="PROJ1::CVD_CUSTOMER" modelObjectNameSpace="StarJoinViewNodeSharedCV" modelObjectType="repository">
+      <upperLeftCorner x="736" y="16"/>
+      <rectangleSize width="211.802734375"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PROJ1::CVC_TEMP_JOIN2" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVC_TEMP_JOIN2"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PROJ1::CUST_TRANS">
+    <resourceUri>PROJ1::CUST_TRANS</resourceUri>
+  </DataSource>
+  <DataSource id="PROJ1::CUST_TEMP">
+    <resourceUri>PROJ1::CUST_TEMP</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:NonEquiJoinView" id="NonEquiJoin_1" cardinality="C1_N" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="TRANS_DATE"/>
+      <viewAttribute id="REVENUE" aggregationType="sum"/>
+      <viewAttribute id="DATE_FROM"/>
+      <viewAttribute id="DATE_TO"/>
+      <viewAttribute id="DEPT"/>
+      <viewAttribute id="CUSTNAME"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PROJ1::CUST_TRANS">
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTID" source="CUSTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="TRANS_DATE" source="TRANS_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REVENUE" source="REVENUE"/>
+    </input>
+    <input node="PROJ1::CUST_TEMP">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE_FROM" source="DATE_FROM"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DATE_TO" source="DATE_TO"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEPT" source="DEPT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTNAME" source="CUSTNAME"/>
+    </input>
+    <joinAttribute leftColumn="TRANS_DATE" rightColumn="DATE_TO" operator="LT"/>
+    <joinAttribute leftColumn="CUSTID" rightColumn="CUSTID" operator="LT"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="NonEquiJoin_1">
+  <attributes>
+    <attribute id="CUSTID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTID"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="CUSTID"/>
+    </attribute>
+    <attribute id="CUSTNAME" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTNAME"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="CUSTNAME"/>
+    </attribute>
+    <attribute id="DEPT" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEPT"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DEPT"/>
+    </attribute>
+    <attribute id="TRANS_DATE" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="TRANS_DATE"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="TRANS_DATE"/>
+    </attribute>
+    <attribute id="DATE_FROM" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE_FROM"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATE_FROM"/>
+    </attribute>
+    <attribute id="DATE_TO" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DATE_TO"/>
+      <keyMapping columnObjectName="NonEquiJoin_1" columnName="DATE_TO"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="REVENUE" order="7" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="REVENUE"/>
+      <measureMapping columnObjectName="NonEquiJoin_1" columnName="REVENUE"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="NonEquiJoin_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="105" y="198"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="PROJ1::CUST_TRANS" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="184"/>
+    </shape>
+  
+    <shape modelObjectName="PROJ1::CUST_TEMP" modelObjectNameSpace="NonEquiJoin_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="192"/>
+    </shape></shapes>
+</layout>
+</Calculation:scenario>

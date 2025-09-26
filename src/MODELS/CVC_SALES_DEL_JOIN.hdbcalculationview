@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="PROJ1::CVC_SALES_DEL_JOIN" applyPrivilegeType="NONE" dataCategory="CUBE" schemaVersion="3.0" outputViewType="Aggregation" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="CVC_SALES_DEL_JOIN"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="PROJ1::CVS_DELIVERY">
+    <resourceUri>PROJ1::CVS_DELIVERY</resourceUri>
+  </DataSource>
+  <DataSource id="PROJ1::CVS_SALES">
+    <resourceUri>PROJ1::CVS_SALES</resourceUri>
+  </DataSource>
+</dataSources>
+<snapshotProcedures/>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_N" joinType="rightOuter">
+    <viewAttributes>
+      <viewAttribute id="MATID"/>
+      <viewAttribute id="MAT_GROUP"/>
+      <viewAttribute id="CREATEDON"/>
+      <viewAttribute id="MAT_TYPE"/>
+      <viewAttribute id="OLD_MATID"/>
+      <viewAttribute id="PLANT"/>
+      <viewAttribute id="COMP_CODE"/>
+      <viewAttribute id="SPRAS"/>
+      <viewAttribute id="MAT_TEXT"/>
+      <viewAttribute id="CUSTID"/>
+      <viewAttribute id="CUST_NAME"/>
+      <viewAttribute id="REGION"/>
+      <viewAttribute id="COUNTRY"/>
+      <viewAttribute id="EMAILID"/>
+      <viewAttribute id="CREDIT_CARD"/>
+      <viewAttribute id="ORDID"/>
+      <viewAttribute id="ORDER_DATE"/>
+      <viewAttribute id="REQ_DATE"/>
+      <viewAttribute id="EMPID"/>
+      <viewAttribute id="ORDER_QTY" aggregationType="sum"/>
+      <viewAttribute id="UNIT"/>
+      <viewAttribute id="PRICE" aggregationType="sum"/>
+      <viewAttribute id="CURRENCY"/>
+      <viewAttribute id="DELID"/>
+      <viewAttribute id="DEL_DATE"/>
+      <viewAttribute id="DELIVERY_QTY" aggregationType="sum"/>
+      <viewAttribute id="MATID_1"/>
+      <viewAttribute hidden="true" id="JOIN$ORDID$ORDID"/>
+    </viewAttributes>
+    <calculatedViewAttributes/>
+    <input node="PROJ1::CVS_DELIVERY">
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELID" source="DELID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DEL_DATE" source="DEL_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="DELIVERY_QTY" source="DELIVERY_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATID_1" source="MATID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORDID$ORDID" source="ORDID"/>
+    </input>
+    <input node="PROJ1::CVS_SALES">
+      <mapping xsi:type="Calculation:AttributeMapping" target="MATID" source="MATID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAT_GROUP" source="MAT_GROUP"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREATEDON" source="CREATEDON"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAT_TYPE" source="MAT_TYPE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="OLD_MATID" source="OLD_MATID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PLANT" source="PLANT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COMP_CODE" source="COMP_CODE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="SPRAS" source="SPRAS"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="MAT_TEXT" source="MAT_TEXT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUSTID" source="CUSTID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CUST_NAME" source="CUST_NAME"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REGION" source="REGION"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="COUNTRY" source="COUNTRY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMAILID" source="EMAILID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CREDIT_CARD" source="CREDIT_CARD"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDID" source="ORDID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_DATE" source="ORDER_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="REQ_DATE" source="REQ_DATE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="EMPID" source="EMPID"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="ORDER_QTY" source="ORDER_QTY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="UNIT" source="UNIT"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="PRICE" source="PRICE"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="CURRENCY" source="CURRENCY"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$ORDID$ORDID" source="ORDID"/>
+    </input>
+    <joinAttribute name="JOIN$ORDID$ORDID"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="ORDID" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDID"/>
+      <keyMapping columnObjectName="Join_1" columnName="ORDID"/>
+    </attribute>
+    <attribute id="DELID" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DELID"/>
+      <keyMapping columnObjectName="Join_1" columnName="DELID"/>
+    </attribute>
+    <attribute id="MATID" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATID"/>
+      <keyMapping columnObjectName="Join_1" columnName="MATID"/>
+    </attribute>
+    <attribute id="MAT_GROUP" order="4" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAT_GROUP"/>
+      <keyMapping columnObjectName="Join_1" columnName="MAT_GROUP"/>
+    </attribute>
+    <attribute id="CREATEDON" order="5" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREATEDON"/>
+      <keyMapping columnObjectName="Join_1" columnName="CREATEDON"/>
+    </attribute>
+    <attribute id="MAT_TYPE" order="6" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAT_TYPE"/>
+      <keyMapping columnObjectName="Join_1" columnName="MAT_TYPE"/>
+    </attribute>
+    <attribute id="OLD_MATID" order="7" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="OLD_MATID"/>
+      <keyMapping columnObjectName="Join_1" columnName="OLD_MATID"/>
+    </attribute>
+    <attribute id="PLANT" order="8" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="PLANT"/>
+      <keyMapping columnObjectName="Join_1" columnName="PLANT"/>
+    </attribute>
+    <attribute id="COMP_CODE" order="9" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COMP_CODE"/>
+      <keyMapping columnObjectName="Join_1" columnName="COMP_CODE"/>
+    </attribute>
+    <attribute id="SPRAS" order="10" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="SPRAS"/>
+      <keyMapping columnObjectName="Join_1" columnName="SPRAS"/>
+    </attribute>
+    <attribute id="MAT_TEXT" order="11" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MAT_TEXT"/>
+      <keyMapping columnObjectName="Join_1" columnName="MAT_TEXT"/>
+    </attribute>
+    <attribute id="CUSTID" order="12" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUSTID"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUSTID"/>
+    </attribute>
+    <attribute id="CUST_NAME" order="13" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CUST_NAME"/>
+      <keyMapping columnObjectName="Join_1" columnName="CUST_NAME"/>
+    </attribute>
+    <attribute id="REGION" order="14" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REGION"/>
+      <keyMapping columnObjectName="Join_1" columnName="REGION"/>
+    </attribute>
+    <attribute id="COUNTRY" order="15" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="COUNTRY"/>
+      <keyMapping columnObjectName="Join_1" columnName="COUNTRY"/>
+    </attribute>
+    <attribute id="EMAILID" order="16" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMAILID"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMAILID"/>
+    </attribute>
+    <attribute id="CREDIT_CARD" order="17" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CREDIT_CARD"/>
+      <keyMapping columnObjectName="Join_1" columnName="CREDIT_CARD"/>
+    </attribute>
+    <attribute id="ORDER_DATE" order="18" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="ORDER_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="ORDER_DATE"/>
+    </attribute>
+    <attribute id="REQ_DATE" order="19" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="REQ_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="REQ_DATE"/>
+    </attribute>
+    <attribute id="EMPID" order="20" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="EMPID"/>
+      <keyMapping columnObjectName="Join_1" columnName="EMPID"/>
+    </attribute>
+    <attribute id="UNIT" order="22" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="UNIT"/>
+      <keyMapping columnObjectName="Join_1" columnName="UNIT"/>
+    </attribute>
+    <attribute id="CURRENCY" order="24" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="CURRENCY"/>
+      <keyMapping columnObjectName="Join_1" columnName="CURRENCY"/>
+    </attribute>
+    <attribute id="DEL_DATE" order="25" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="DEL_DATE"/>
+      <keyMapping columnObjectName="Join_1" columnName="DEL_DATE"/>
+    </attribute>
+    <attribute id="MATID_1" order="27" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="MATID"/>
+      <keyMapping columnObjectName="Join_1" columnName="MATID_1"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures>
+    <measure id="ORDER_QTY" order="21" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="ORDER_QTY"/>
+      <measureMapping columnObjectName="Join_1" columnName="ORDER_QTY"/>
+    </measure>
+    <measure id="PRICE" order="23" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="PRICE"/>
+      <measureMapping columnObjectName="Join_1" columnName="PRICE"/>
+    </measure>
+    <measure id="DELIVERY_QTY" order="26" aggregationType="sum" measureType="simple">
+      <descriptions defaultDescription="DELIVERY_QTY"/>
+      <measureMapping columnObjectName="Join_1" columnName="DELIVERY_QTY"/>
+    </measure>
+  </baseMeasures>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+  <localDimensions/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="94" y="186"/>
+      <rectangleSize height="30" width="160"/>
+    </shape>
+    <shape modelObjectName="PROJ1::CVS_DELIVERY" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="236" y="23"/>
+      <rectangleSize width="182"/>
+    </shape>
+    <shape modelObjectName="PROJ1::CVS_SALES" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="533" y="23"/>
+      <rectangleSize width="202"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>
